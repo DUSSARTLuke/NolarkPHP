@@ -1,0 +1,4 @@
+AuthName "Veuillez entrer votre login et mot de passe d'administrateur"
+AuthType Basic
+AuthUserFile "C:\wamp64\www\Nolark\admin\.htpasswd"
+Require valid-user
