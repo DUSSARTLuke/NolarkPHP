@@ -5,15 +5,9 @@ $pageActuelle = substr($scriptName, strrpos($scriptName, '/') + 1);
 if ($pageActuelle === 'index.php') {
     $dirIndex = './';
     $dirPages = './pages/';
-    $dirAdmin = './admin/';
-} elseif($pageActuelle === 'admin.php') {
-    $dirIndex = '../';
-    $dirPages = '../pages/';
-    $dirAdmin = '../';
 } else {
     $dirIndex = '../';
     $dirPages = './';
-    $dirAdmin = '../admin/';
 }
 // Construction d'un tableau associatif contenant les correspondances
 // noms de pages / liens de la barre de navigation
@@ -24,7 +18,7 @@ $pages = array(
     'Piste' => $dirPages . 'piste.php',
     'Enfants' => $dirPages . 'enfants.php',
     'Nous contacter' => $dirPages . 'nous-contacter.php',
-    'admin' =>$dirAdmin . 'admin.php'
+    'espace membres' =>$dirPages . 'membres.php'
 );
 ?>
 
