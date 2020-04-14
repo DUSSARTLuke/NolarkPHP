@@ -15,6 +15,11 @@
     padding: 10px;
 }
 
+input[type="button"]
+{
+    display: block;
+    margin: 0 auto;
+}
 #connexion legend {
     padding: 0 5px;
     font-weight: bold;
@@ -35,10 +40,21 @@
 }
 
 
-
-
 #connexion fieldset {
     width: fit-content;
     margin: auto;
 }
 
+
+#inscription {
+    align-self: flex-start;
+}
+
+#inscription legend {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+#inscription div {
+    margin: 10px;
+}
