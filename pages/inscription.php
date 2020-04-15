@@ -19,7 +19,33 @@
     <body>
         <?php
         include('../includes/header.html.inc.php');
+        include('../includes/inscription.inc.php');
         ?>
+        <section>
+            <h1>Inscription: </h1>
+            <form action="" method="POST">
+                <fieldset>
+                    <legend> Vous inscrire : </legend>
+                    <div class="form-group">
+                        <label for="">Votre pseudo : </label>
+                        <input type="text" name="pseudo" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Votre mail : </label>
+                        <input type="email" name="email" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mot de passe : </label>
+                        <input type="password" name="password" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Confirmez votre mot de passe : </label>
+                        <input type="password" name="password_confirm" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">M'inscrire</button>
+                </fieldset>
+            </form>
+        </section>
         <?php
         include('../includes/footer.inc.php');
         ?>
