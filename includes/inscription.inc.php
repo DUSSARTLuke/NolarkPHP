@@ -17,11 +17,13 @@ if (!empty($_POST)) {
     }
 
     if (empty($errors)) {
-        require_once '../includes/db.php';
-        $req = $cnx->prepare("INSERT INTO membres set login = ?, password = ?, mail = ?");
+        $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'root', '');
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $req->execute([$_POST['pseudo'], $password, $_POST['email']]);
-        die('Notre comptre a bien été crée');
+        $req = $cnx->prepare('INSERT INTO membres(login, password, mail) values("' . $_POST['pseudo'] . '","' . $password . '","'. $_POST['email'] .'")');
+        $req->execute();
+        $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $cnx->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+        die('Votre compte a bien été crée');
     }
 
     debug($errors);
