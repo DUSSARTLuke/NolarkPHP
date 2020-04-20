@@ -1,9 +1,9 @@
-#connex h1 {
+#inscrit h1 {
     margin-top: 10px;
     text-align: left;
 }
 
-#connex form {
+#inscrit form {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -11,36 +11,42 @@
     margin-top: 10px;
 }
 
-#contact form fieldset {
+#inscrit form fieldset {
     padding: 10px;
 }
 
-input[type="button"]
-{
-    display: block;
-    margin: 0 auto;
+input[type="submit"], input[type="button"]	{
+	background-color: #CDF0F0;
+	color: black;
+	border: 1px outset black;
 }
-#connexion legend {
+
+input[type="text"]:focus, input[type="password"]:focus {
+	background-color: #CDF0F0;
+	color: black;
+}
+
+#inscrit legend {
     padding: 0 5px;
     font-weight: bold;
 }
 
-#connexion label {
+#inscrit label {
     margin-right: 10px;
 }
 
-#connexion input, #coordo select {
+#nscrit input {
     flex: 1;
 }
 
-#connexion div {
+#inscrit div {
     display: flex;
     justify-content: space-between;
     margin: 10px;
 }
 
 
-#connexion fieldset {
+#inscrit fieldset {
     width: fit-content;
     margin: auto;
 }
