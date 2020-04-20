@@ -1,21 +1,34 @@
+<!DOCTYPE html>
+<!-- 
+     Page web créé dans le cadre du cours de web Dev le 03/04/2020
+     Auteur : Luke DUSSART
+     Email : lukedussart@hotmail.fr
+-->
+<?php session_start();?>
 <?php
-include('../includes/haut.php'); //contient le doctype, et head.
-
-/* * ********Fin entête et titre********** */
+if(isset($_SESSION['membre_id']))
+{
+	header('Location: membres.php');
+	exit();
+}
 ?>
+<html lang="fr-FR">
+    <head>
+        <title>Casques Nolark : Sécurité et confort, nos priorités !</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Luke DUSSART">
+        <meta name="description" content="Découvrez des casques moto dépassant même les exigences des tests de sécurité. Tous les casques Nolark au meilleur prix et avec en prime la livraison gratuite !">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../css/styles.css" rel="stylesheet" type="text/css">
+        <link href="../css/inscription.css" rel="stylesheet" type="text/css">
+        <link rel="icon" href="../favicon.ico">
+    </head>
+<?php$queries = 0;?>
 <body>
     <?php
     include('../includes/header.html.inc.php');
     ?>
-    <?php
-    if (isset($_SESSION['id'])) {
-        header('Location: ' . dirPages . 'membres.php');
-        exit();
-    }
-    ?>
-    <?php
-    include('../includes/inscription.inc.php');
-    ?>
+
     <section id="inscrit">
         <h1>Formulaire d'inscription</h1>
         <p>Bienvenue sur la page d'inscription de mon site !<br/>
@@ -37,9 +50,9 @@ include('../includes/haut.php'); //contient le doctype, et head.
                 <p>Aucun de ces systèmes n'est parfait, mais nous espérons que celui-ci, sans vous être inacessible sera suffisant
                     pour lutter contre ces robots.</p>
                 <p>Il est possible que certaines fois, l'image soit trop dure à lire ; le cas échéant, actualisez la page jusqu'à avoir une image lisible.</p>
-                <p>Si vous êtes dans l'incapacité de lire plusieurs images d'affilée, <a href="../contact.php">contactez-nous</a>, nous nous occuperons de votre inscription.</p>
+                <p>Si vous êtes dans l'incapacité de lire plusieurs images d'affilée, <a href="nous-contacter.php">contactez-nous</a>, nous nous occuperons de votre inscription.</p>
                 <label for="captcha" class="float">Entrez les 8 caractères (majuscules ou chiffres) contenus dans l'image :</label> <input type="text" name="captcha" id="captcha"><br/>
-                <img src="captcha.php" />
+                <img src="captcha.php" alt="image avec des caractères permettant de vérifier la non-automatisation" />
             </fieldset>
             <div class="inscription"><input type="submit" value="Inscription" /></div>
         </form>

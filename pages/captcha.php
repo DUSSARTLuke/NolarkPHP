@@ -1,6 +1,6 @@
 <?php
 session_start();
-header ("Content-type: image/png");
+header ("Content-type: png");
 $image = imagecreate(320, 100);
 
 $blanc = imagecolorallocate($image, 255, 255, 255);
@@ -77,8 +77,8 @@ $ecart = 300/10+4; //écart entre les caractères
 
 $_SESSION['captcha'] = ''; 
 
-$i = 0;
-while($i <= 7)
+$m = 0;
+while($m <= 7)
 {
 	$lettre = $carac[mt_rand(0, $Tcarac-1)]; //choix de lettre
 	$_SESSION['captcha'] .= $lettre; //stockage
@@ -88,7 +88,7 @@ while($i <= 7)
 	$police = $polices[mt_rand(0, $Tpolices-1)]; //police :p
 	
 	imagettftext($image, $taille, $angle, $ecart*$i+15, $y, $aupifcolor, 'polices/'.$police.'.ttf', $lettre);
-	$i++;
+	$m++;
 }
 
 imagepng($image);
