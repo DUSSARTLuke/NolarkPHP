@@ -1,9 +1,9 @@
-#inscrit h1 {
+.inscrit h1 {
     margin-top: 10px;
     text-align: left;
 }
 
-#inscrit form {
+.inscrit form {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -11,7 +11,7 @@
     margin-top: 10px;
 }
 
-#inscrit form fieldset {
+.inscrit form fieldset {
     padding: 10px;
 }
 
@@ -26,27 +26,27 @@ input[type="text"]:focus, input[type="password"]:focus {
 	color: black;
 }
 
-#inscrit legend {
+.inscrit legend {
     padding: 0 5px;
     font-weight: bold;
 }
 
-#inscrit label {
+.inscrit label {
     margin-right: 10px;
 }
 
-#nscrit input {
+.inscrit input {
     flex: 1;
 }
 
-#inscrit div {
+.inscrit div {
     display: flex;
     justify-content: space-between;
     margin: 10px;
 }
 
 
-#inscrit fieldset {
+.inscrit fieldset {
     width: fit-content;
     margin: auto;
 }
@@ -54,6 +54,7 @@ input[type="text"]:focus, input[type="password"]:focus {
 
 #inscription {
     align-self: flex-start;
+    
 }
 
 #inscription legend {
@@ -63,4 +64,8 @@ input[type="text"]:focus, input[type="password"]:focus {
 
 #inscription div {
     margin: 10px;
+}
+
+.pseudo {
+	font-weight: bold;
 }

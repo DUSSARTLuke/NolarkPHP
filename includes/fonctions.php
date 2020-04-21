@@ -1,4 +1,5 @@
 <?php
+
 /*
   Neoterranos & LkY
   Page fonctions.php
@@ -68,9 +69,7 @@ function connexionbdd() {
     $bd_nom_bd = 'nolark';
 
     //Connexion à la base de données
-    mysql_connect($bd_nom_serveur, $bd_login, $bd_mot_de_passe);
-    mysql_select_db($bd_nom_bd);
-    mysql_query("set names 'utf8'");
+    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'nolarkuser', 'nolarkpwd');
 }
 
 function actualiser_session() {
@@ -157,3 +156,113 @@ function vider_cookie() {
         setcookie($cle, '', time() - 3600);
     }
 }
+
+
+function checkpseudo($pseudo) {
+    if ($pseudo == '')
+        return 'empty';
+    else if (strlen($pseudo) < 3)
+        return 'tooshort';
+    else if (strlen($pseudo) > 32)
+        return 'toolong';
+
+    else {
+        $result = sqlquery("SELECT COUNT(*) AS nbr FROM membres WHERE login = '" . mysql_real_escape_string($pseudo) . "'", 1);
+        global $queries;
+        $queries++;
+
+        if ($result['nbr'] > 0)
+            return 'exists';
+        else
+            return 'ok';
+    }
+}
+
+function checkmdp($mdp) {
+    if ($mdp == '')
+        return 'empty';
+    else if (strlen($mdp) < 4)
+        return 'tooshort';
+    else if (strlen($mdp) > 50)
+        return 'toolong';
+
+    else {
+        if (!preg_match('#[0-9]{1,}#', $mdp))
+            return 'nofigure';
+        else if (!preg_match('#[A-Z]{1,}#', $mdp))
+            return 'noupcap';
+        else
+            return 'ok';
+    }
+}
+
+function checkmdpS($mdp, $mdp_verif) {
+    if ($mdp != $mdp_verif && $mdp != '' && $mdp_verif != '')
+        return 'different';
+    else
+        return checkmdp($mdp);
+}
+
+function checkmail($mail) {
+    if ($mail == '')
+        return 'empty';
+    else if (!preg_match('#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#is', $mail))
+        return 'isnt';
+
+    else {
+        $result = sqlquery("SELECT COUNT(*) AS nbr FROM membres WHERE mail = '" . mysql_real_escape_string($email) . "'", 1);
+        global $queries;
+        $queries++;
+
+        if ($result['nbr'] > 0)
+            return 'exists';
+        else
+            return 'ok';
+    }
+}
+
+function checkmailS($mail, $mail_verif) {
+    if ($mail != $mail_verif && $mail != '' && $mail_verif != '')
+        return 'different';
+    else
+        return 'ok';
+}
+
+function birthdate($date) {
+    if ($date == '')
+        return 'empty';
+
+    else if (substr_count($date, '/') != 2)
+        return 'format';
+    else {
+        $DATE = explode('/', $date);
+        if (date('Y') - $DATE[2] <= 4)
+            return 'tooyoung';
+        else if (date('Y') - $DATE[2] >= 135)
+            return 'tooold';
+
+        else if ($DATE[2] % 4 == 0) {
+            $maxdays = Array('31', '29', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31');
+            if ($DATE[0] > $maxdays[$DATE[1] - 1])
+                return 'invalid';
+            else
+                return 'ok';
+        } else {
+            $maxdays = Array('31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31');
+            if ($DATE[0] > $maxdays[$DATE[1] - 1])
+                return 'invalid';
+            else
+                return 'ok';
+        }
+    }
+}
+
+
+function vidersession()
+{
+	foreach($_SESSION as $cle => $element)
+	{
+		unset($_SESSION[$cle]);
+	}
+}
+
