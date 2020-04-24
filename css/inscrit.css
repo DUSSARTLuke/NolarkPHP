@@ -38,3 +38,27 @@
     width: fit-content;
     margin: auto;
 }
+
+#protect legend {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+#protect label {
+    margin-right: 10px;
+}
+
+#protect input{
+    flex: 1;
+}
+
+#protect div {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+#protect fieldset {
+    width: fit-content;
+    margin: auto;
+}
