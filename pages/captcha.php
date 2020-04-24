@@ -1,6 +1,25 @@
 <?php
+/*
+Neoterranos & LkY
+Page captcha.php
+
+Génère un captcha.
+
+Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
+
+Liste des fonctions :
+--------------------------
+Aucune fonction
+--------------------------
+
+
+Liste des informations/erreurs :
+--------------------------
+Aucune information/erreur
+--------------------------
+*/
+
 session_start();
-header ("Content-type: png");
 $image = imagecreate(320, 100);
 
 $blanc = imagecolorallocate($image, 255, 255, 255);
@@ -15,14 +34,37 @@ $orange = imagecolorallocate($image, 255, 160, 0);
 $bleu = imagecolorallocate($image, 60, 75, 200);
 $bleuclair = imagecolorallocate($image, 156, 227, 254);
 $vertf = imagecolorallocate($image, 20, 140, 17);
+
+/*$Anoir = imagecolorallocatealpha($image, 0, 0, 0, 80);
+$Ajaune = imagecolorallocatealpha($image, 255, 255, 0, 80);
+$Ablanc = imagecolorallocatealpha($image, 255, 255, 255, 80);
+$Arouge = imagecolorallocatealpha($image, 200, 39, 45, 80);
+$Avert = imagecolorallocatealpha($image, 45, 200, 39, 80);
 $Acyan = imagecolorallocatealpha($image, 0, 255, 255, 80);
 $Amagenta = imagecolorallocatealpha($image, 255, 0, 255, 80);
 $Aorange = imagecolorallocatealpha($image, 255, 128, 0, 80);
 $Ableu = imagecolorallocatealpha($image, 39, 45, 200, 80);
 $Ableuclair = imagecolorallocatealpha($image, 156, 227, 254, 80);
 
-$colors = Array($vert, $noir, $jaune, $blanc, $rouge, $cyan, $magenta, $orange, $bleu, $bleuclair, $gris, $vertf, $Ableu, $Ableuclair, $Acyan, $Amagenta, $Aorange);
+$A2noir = imagecolorallocatealpha($image, 0, 0, 0, 25);
+$A2jaune = imagecolorallocatealpha($image, 255, 255, 0, 25);
+$A2blanc = imagecolorallocatealpha($image, 255, 255, 255, 25);
+$A2rouge = imagecolorallocatealpha($image, 200, 39, 45, 25);
+$A2vert = imagecolorallocatealpha($image, 45, 200, 39, 25);
+$A2cyan = imagecolorallocatealpha($image, 0, 255, 255, 25);
+$A2magenta = imagecolorallocatealpha($image, 255, 0, 255, 25);
+$A2orange = imagecolorallocatealpha($image, 255, 128, 0, 25);
+$A2bleu = imagecolorallocatealpha($image, 39, 45, 200, 25);
+$A2bleuclair = imagecolorallocatealpha($image, 156, 227, 254, 25);*/
+
+//Toutes les couleurs
+$colors = Array($vert, $noir, $jaune, $blanc, $rouge, $cyan, $magenta, $orange, $bleu, $bleuclair, $gris, $vertf);
 $Tcolors = count($colors);
+
+/*$colors2 = Array($Avert, $Anoir, $Ajaune, $Ablanc, $Arouge, $Acyan, $Amagenta, $Aorange, $Ableu, $Ableuclair);
+$Tcolors2 = count($colors2);
+$colors3 = Array($A2vert, $A2noir, $A2jaune, $A2blanc, $A2rouge, $A2cyan, $A2magenta, $A2orange, $A2bleu, $A2bleuclair);
+$Tcolors3 = count($colors3);*/
 
 //couleurs autorisées pour les caractères
 $Lcolors = Array($noir, $rouge, $magenta, $bleu, $vertf);
@@ -38,7 +80,7 @@ $Tcarac = strlen($carac);
 //définition des lignes noires
 $nb_lignesN = mt_rand(3,7);
 $i = 1;
-while($i<=$nb_lignesN)
+while($i<=$nb_lignes)
 {
 	ImageLine($image, mt_rand(0,40), mt_rand(0,100), mt_rand(280, 320), mt_rand(0,100), $noir);
 	$i++;
@@ -46,39 +88,40 @@ while($i<=$nb_lignesN)
 
 //définition des lignes colorées.
 $nb_lignesC = mt_rand(3,7);
-$j = 1;
-while($j<=$nb_lignesC)
+$z = 1;
+while($z<=$nb_lignes)
 {
 	ImageLine($image, mt_rand(0,40), mt_rand(0,100), mt_rand(280,320), mt_rand(0,100), $colors[mt_rand(0,$Tcolors-1)]);
-	$j++;
+	$z++;
 }
 
 //définition des ellipses
 $nb_ellipses = mt_rand(1,6);
-$k = 1;
-while($k<= $nb_ellipses)
+$j = 1;
+while($j<= $nb_ellipses)
 {
 	ImageEllipse($image, mt_rand(0,320), mt_rand(0,100), 25+mt_rand(0,15), 25+mt_rand(0,15), $colors[mt_rand(0,$Tcolors-1)]);
-	$k++;
+	$j++;
 }
 
 //définition des triangles
 $nb_triangles = mt_rand(1,6);
-$l = 1;
-while($l<=$nb_triangles)
+$k = 1;
+while($k<=$nb_triangles)
 {
 	$array = Array(mt_rand(0,300), mt_rand(0,100), mt_rand(0,300), mt_rand(0,100), mt_rand(0,300), mt_rand(0,100));
 	ImagePolygon($image, $array, 3, $colors[mt_rand(0,$Tcolors-1)]);
-	$l++;
+	$k++;
 }
+
 
 $aupifcolor = $Lcolors[mt_rand(0,$TLcolors-1)]; //la couleur des caractères
 $ecart = 300/10+4; //écart entre les caractères
 
-$_SESSION['captcha'] = ''; 
+$_SESSION['captcha'] = ''; //La voilà !! Enfin !!
 
-$m = 0;
-while($m <= 7)
+$l = 0;
+while($l <= 7)
 {
 	$lettre = $carac[mt_rand(0, $Tcarac-1)]; //choix de lettre
 	$_SESSION['captcha'] .= $lettre; //stockage
@@ -88,7 +131,8 @@ while($m <= 7)
 	$police = $polices[mt_rand(0, $Tpolices-1)]; //police :p
 	
 	imagettftext($image, $taille, $angle, $ecart*$i+15, $y, $aupifcolor, 'polices/'.$police.'.ttf', $lettre);
-	$m++;
+	$l++;
 }
 
-imagepng($image);
+imagepng($image); //On envoie et on prie :p
+?>

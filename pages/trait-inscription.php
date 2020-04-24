@@ -8,28 +8,23 @@ actualiser_session();
 
 /* * ******Fin actualisation de session...********* */
 
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['login'])) {
     header('Location: membres.php');
     exit();
 }
 
-// Vérification de la première inscription de l'utilisateur
-if ($_SESSION['inscrit'] == $_POST['pseudo'] && trim($_POST['inscrit']) != '') {
-    $informations = Array(/* Déjà inscrit (en cas de bug...) */
-        true,
-        'Vous êtes déjà inscrit',
-        'Vous avez déjà complété une inscription avec le pseudo <span class="pseudo">' . htmlspecialchars($_SESSION['inscrit'], ENT_QUOTES) . '</span>.',
-        ' - <a href="membres.php">Retourner à l\'index</a> connexion.php',
-        5
-    );
-    exit();
-}
 
 $_SESSION['erreurs'] = 0;
 
+$pseu = filter_input(INPUT_POST, 'pseudo');
+$password = filter_input(INPUT_POST, 'mdp');
+$pass_confirm = filter_input(INPUT_POST, 'mdp_verif');
+$email = filter_input(INPUT_POST, 'mail');
+$mail_confirm = filter_input(INPUT_POST, 'mail_verif');
+$naissance = filter_input(INPUT_POST, 'date_naissance');
 //Pseudo
-if (isset($_POST['pseudo'])) {
-    $pseudo = trim($_POST['pseudo']);
+if (isset($pseu)) {
+    $pseudo = trim($pseu);
     $pseudo_result = checkpseudo($pseudo);
     if ($pseudo_result == 'tooshort') {
         $_SESSION['pseudo_info'] = '<span class="erreur">Le pseudo ' . htmlspecialchars($pseudo, ENT_QUOTES) . ' est trop court, vous devez en choisir un plus long (minimum 3 caractères).</span><br/>';
@@ -57,8 +52,8 @@ if (isset($_POST['pseudo'])) {
 }
 
 //Mot de passe
-if (isset($_POST['mdp'])) {
-    $mdp = trim($_POST['mdp']);
+if (isset($password)) {
+    $mdp = trim($password);
     $mdp_result = checkmdp($mdp, '');
     if ($mdp_result == 'tooshort') {
         $_SESSION['mdp_info'] = '<span class="erreur">Le mot de passe entré est trop court, changez-en pour un plus long (minimum 4 caractères).</span><br/>';
@@ -90,8 +85,8 @@ if (isset($_POST['mdp'])) {
 }
 
 //Mot de passe suite
-if (isset($_POST['mdp_verif'])) {
-    $mdp_verif = trim($_POST['mdp_verif']);
+if (isset($pass_confirm)) {
+    $mdp_verif = trim($pass_confirm);
     $mdp_verif_result = checkmdpS($mdp_verif, $mdp);
     if ($mdp_verif_result == 'different') {
         $_SESSION['mdp_verif_info'] = '<span class="erreur">Le mot de passe de vérification diffère du mot de passe.</span><br/>';
@@ -140,8 +135,8 @@ if (isset($_POST['mail'])) {
 }
 
 //mail suite
-if (isset($_POST['mail_verif'])) {
-    $mail_verif = trim($_POST['mail_verif']);
+if (isset($mail_confirm)) {
+    $mail_verif = trim($mail_confirm);
     $mail_verif_result = checkmailS($mail_verif, $mail);
     if ($mail_verif_result == 'different') {
         $_SESSION['mail_verif_info'] = '<span class="erreur">Le mail de vérification diffère du mail.</span><br/>';
@@ -163,8 +158,8 @@ if (isset($_POST['mail_verif'])) {
 }
 
 //date de naissance
-if (isset($_POST['date_naissance'])) {
-    $date_naissance = trim($_POST['date_naissance']);
+if (isset($naissance)) {
+    $date_naissance = trim($naissance);
     $date_naissance_result = birthdate($date_naissance);
     if ($date_naissance_result == 'format') {
         $_SESSION['date_naissance_info'] = '<span class="erreur">Date de naissance au mauvais format ou invalide.</span><br/>';
@@ -195,7 +190,7 @@ if (isset($_POST['date_naissance'])) {
     exit();
 }
 
-//captcha
+/**captcha
 if ($_POST['captcha'] == $_SESSION['captcha'] && isset($_POST['captcha']) && isset($_SESSION['captcha'])) {
     $_SESSION['captcha_info'] = '';
 } else {
@@ -205,7 +200,7 @@ if ($_POST['captcha'] == $_SESSION['captcha'] && isset($_POST['captcha']) && iss
 
 
 unset($_SESSION['captcha']);
-
+*/
 
 /* * ******Entête et titre de page******** */
 if ($_SESSION['erreurs'] > 0)
@@ -217,13 +212,14 @@ include('../includes/haut.php'); //contient le doctype, et head.
 include ('../includes/header.html.inc.php');
 
 if ($_SESSION['erreurs'] == 0) {
-    $insertion = "INSERT INTO membres VALUES(NULL, '" . mysql_real_escape_string($pseudo) . "',
-				'" . password_hash($mdp, PASSWORD_BCRYPT) . "', '" . mysql_real_escape_string($mail) . "',
-				" . time() . ", '" . mysql_real_escape_string($date_naissance) . "',
-				" . time() . ", 0)";
-
-    if (mysql_query($insertion)) {
-        $queries++;
+    
+    $insertion = "INSERT INTO `membres` (`id`, `login`, `password`, `mail`, `membre_banni`, `datenaissance`) VALUES (NULL,'" .$pseudo. "','". password_hash($mdp, PASSWORD_BCRYPT) . "','" .$mail."','" . 0 . "','" . $date_naissance ."')";			 
+    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'root', '');
+    // Requête SQL
+    $req = $insertion;
+    $res = $cnx->prepare($req);
+    
+    if ($res->execute()) {
         vidersession();
         $_SESSION['inscrit'] = $pseudo;
         /* informe qu'il s'est déjà inscrit s'il actualise, si son navigateur
@@ -234,31 +230,11 @@ if ($_SESSION['erreurs'] == 0) {
             Vous pouvez vous connecter avec vos identifiants <a href="connexion.php">ici</a>.
         </p>
         <?php
-    } else {
-        if (stripos(mysql_error(), $_SESSION['form_pseudo']) !== FALSE) { // recherche du pseudo
-            unset($_SESSION['form_pseudo']);
-            $_SESSION['pseudo_info'] = '<span class="erreur">Le pseudo ' . htmlspecialchars($pseudo, ENT_QUOTES) . ' est déjà pris, choisissez-en un autre.</span><br/>';
-            $_SESSION['erreurs']++;
-        }
-
-        if (stripos(mysql_error(), $_SESSION['form_mail']) !== FALSE) { //recherche du mail
-            unset($_SESSION['form_mail']);
-            unset($_SESSION['form_mail_verif']);
-            $_SESSION['mail_info'] = '<span class="erreur">Le mail ' . htmlspecialchars($mail, ENT_QUOTES) . ' est déjà pris, <a href="../contact.php">contactez-nous</a> si vous pensez à une erreur.</span><br/>';
-            $_SESSION['mail_verif_info'] = str_replace('mail', 'mail de vérification', $_SESSION['mail_info']);
-            $_SESSION['erreurs']++;
-            $_SESSION['erreurs']++;
-        }
-
-        if ($_SESSION['erreurs'] == 0) {
-            $sqlbug = true; //plantage SQL.
-            $_SESSION['erreurs']++;
-        }
-    }
+    } 
 }
 
-if ($_SESSION['erreurs'] > 0) {
-    if ($_SESSION['erreurs'] == 1)
+else if ($_SESSION['erreurs'] > 0) {
+    if ($_SESSION['erreurs'] === 1)
         $_SESSION['nb_erreurs'] = '<span class="erreur">Il y a eu 1 erreur.</span><br/>';
     else
         $_SESSION['nb_erreurs'] = '<span class="erreur">Il y a eu ' . $_SESSION['erreurs'] . ' erreurs.</span><br/>';
@@ -274,10 +250,9 @@ if ($_SESSION['erreurs'] > 0) {
         echo $_SESSION['mail_info'];
         echo $_SESSION['mail_verif_info'];
         echo $_SESSION['date_naissance_info'];
-        echo $_SESSION['qcm_info'];
-        echo $_SESSION['captcha_info'];
+        //echo $_SESSION['captcha_info'];
 
-        if ($sqlbug !== true) {
+        if ($_SESSION["erreurs"] !== 0) {
             ?>
             Nous vous proposons donc de revenir à la page précédente pour corriger les erreurs. (Attention, que vous
             l'ayez correctement remplie ou non, la partie sur la charte et l'image est à refaire intégralement.)</p>

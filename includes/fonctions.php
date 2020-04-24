@@ -24,50 +24,17 @@
   L'id de cookie est incorrect
   --------------------------
  */
+function sqlquery($requete){
+    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'nolarkuser', 'nolarkpwd');
+    // Requête SQL
+    $req = $requete;
+    $res = $cnx->prepare($req);
+    $res->execute();
+    $res->fetch(PDO::FETCH_OBJ);
 
-function sqlquery($requete, $number) {
-    $query = mysql_query($requete) or exit('Erreur SQL : ' . mysql_error() . ' Ligne : ' . __LINE__ . '.'); //requête
-    queries();
-
-    /*
-      Deux cas possibles ici :
-      Soit on sait qu'on a qu'une seule entrée qui sera
-      retournée par SQL, donc on met $number à 1
-      Soit on ne sait pas combien seront retournées,
-      on met alors $number à 2.
-     */
-
-    if ($number == 1) {
-        $query1 = mysql_fetch_assoc($query);
-        mysql_free_result($query);
-        /* mysql_free_result($query) libère le contenu de $query, je
-          le fais par principe, mais c'est pas indispensable. */
-        return $query1;
-    } else if ($number == 2) {
-        while ($query1 = mysql_fetch_assoc($query)) {
-            $query2[] = $query1;
-            /* On met $query1 qui est un array dans $query2 qui
-              est un array. Ca fait un array d'arrays :o */
-        }
-        mysql_free_result($query);
-        return $query2;
-    } else { //Erreur
-        exit('Argument de sqlquery non renseigné ou incorrect.');
-    }
-}
-
-function queries($num = 1) {
-    global $queries;
-    $queries = $queries + intval($num);
 }
 
 function connexionbdd() {
-    //Définition des variables de connexion à la base de données
-    $bd_nom_serveur = 'localhost';
-    $bd_login = 'root';
-    $bd_mot_de_passe = '';
-    $bd_nom_bd = 'nolark';
-
     //Connexion à la base de données
     $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'nolarkuser', 'nolarkpwd');
 }
@@ -75,7 +42,7 @@ function connexionbdd() {
 function actualiser_session() {
     if (isset($_SESSION['membre_id']) && intval($_SESSION['membre_id']) != 0) { //Vérification id
         //utilisation de la fonction sqlquery, on sait qu'on aura qu'un résultat car l'id d'un membre est unique.
-        $retour = sqlquery("SELECT id, login, password FROM membres WHERE id = " . intval($_SESSION['id']), 1);
+        $retour = sqlquery("SELECT id, login, password FROM membres WHERE id = " . intval($_SESSION['id']));
 
         //Si la requête a un résultat (c'est-à-dire si l'id existe dans la table membres)
         if (isset($retour['login']) && $retour['login'] != '') {
@@ -104,7 +71,7 @@ function actualiser_session() {
         if (isset($_COOKIE['id']) && isset($_COOKIE['password'])) { //S'il en manque un, pas de session.
             if (intval($_COOKIE['id']) != 0) {
                 //idem qu'avec les $_SESSION
-                $retour = sqlquery("SELECT id, login, password FROM membres WHERE id = " . intval($_COOKIE['id']), 1);
+                $retour = sqlquery("SELECT id, login, password FROM membres WHERE id = " . intval($_COOKIE['id']));
 
                 if (isset($retour['login']) && $retour['login'] != '') {
                     if ($_COOKIE['password'] != $retour['password']) {
@@ -167,9 +134,8 @@ function checkpseudo($pseudo) {
         return 'toolong';
 
     else {
-        $result = sqlquery("SELECT COUNT(*) AS nbr FROM membres WHERE login = '" . mysql_real_escape_string($pseudo) . "'", 1);
-        global $queries;
-        $queries++;
+        $result = sqlquery("SELECT COUNT(*) AS nbr FROM membres WHERE login = '" . $pseudo . "'");
+        
 
         if ($result['nbr'] > 0)
             return 'exists';
@@ -210,9 +176,7 @@ function checkmail($mail) {
         return 'isnt';
 
     else {
-        $result = sqlquery("SELECT COUNT(*) AS nbr FROM membres WHERE mail = '" . mysql_real_escape_string($email) . "'", 1);
-        global $queries;
-        $queries++;
+        $result = sqlquery("SELECT COUNT(*) AS nbr FROM membres WHERE mail = '" . $mail . "'");        
 
         if ($result['nbr'] > 0)
             return 'exists';
