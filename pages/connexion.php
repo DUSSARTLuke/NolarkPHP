@@ -68,7 +68,6 @@ if (isset($connexion) && $connexion == 'Connexion') {
                     <legend>Vous connecter</legend>
                     <div><label for="pseudo">Votre pseudo :</label> <input type="text" name="pseudo" id="pseudo" size="35" required  value="<?php if (isset($pseudo)) echo htmlentities(trim($pseudo)); ?>"></div>
                     <div><label for="mdp">Votre mot de passe :</label> <input type="password" name="mdp" id="mdp" size="35" required></div>
-                    <div><input type="checkbox" name="cookie" id="cookie"/> <label for="cookie">Me connecter automatiquement à mon prochain passage.</label></div>
                     <div><input type="submit" name="connexion" value="Connexion">
                         <a class="link_auth" href="reset-mdp.php">Mot de passe oublié ?</a>
                     </div>

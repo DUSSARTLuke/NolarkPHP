@@ -1,0 +1,41 @@
+
+#resetsec h1 {
+    margin-top: 10px;
+    text-align: left;
+}
+
+#resetsec{ 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: 50px;
+    margin-top: 10px;
+}
+
+#resetsec form fieldset {
+    padding: 10px;
+}
+
+#reset legend {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+#reset label {
+    margin-right: 10px;
+}
+
+#reset input{
+    flex: 1;
+}
+
+#reset div {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+#reset fieldset {
+    width: fit-content;
+    margin: auto;
+}
