@@ -25,12 +25,11 @@
   --------------------------
  */
 function sqlquery($requete){
-    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'nolarkuser', 'nolarkpwd');
+    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'root', '');
     // Requête SQL
     $req = $requete;
     $res = $cnx->prepare($req);
     $res->execute();
-    $res->fetch(PDO::FETCH_OBJ);
 
 }
 

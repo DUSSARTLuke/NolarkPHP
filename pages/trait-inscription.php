@@ -208,7 +208,7 @@ if ($_SESSION['erreurs'] > 0)
 else
     ;
 
-include('../includes/haut.php'); //contient le doctype, et head.
+include('../includes/hautinscription.php'); //contient le doctype, et head.
 include ('../includes/header.html.inc.php');
 
 if ($_SESSION['erreurs'] == 0) {

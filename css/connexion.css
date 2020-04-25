@@ -1,0 +1,62 @@
+#connex h1 {
+    margin-top: 10px;
+    text-align: left;
+}
+
+#connex form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: 50px;
+    margin-top: 10px;
+}
+
+#connex form fieldset {
+    padding: 10px;
+}
+
+#connexion legend {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+#connexion label {
+    margin-right: 10px;
+}
+
+#connexion input{
+    flex: 1;
+}
+
+#connexion div {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+#connexion fieldset {
+    width: fit-content;
+    margin: auto;
+}
+
+#inscription {
+    align-self: flex-start;
+}
+
+#inscription legend {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+#inscription div {
+    margin: 10px;
+}
+
+#inscription label {
+    margin-left: 10px;
+}
+
+#lien{
+    color: blue;
+    text-align: center;
+}
