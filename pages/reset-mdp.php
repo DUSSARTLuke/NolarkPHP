@@ -21,13 +21,36 @@
         include('../includes/header.html.inc.php');
         ?>
         <section id="resetsec">
-        <form id="form_reset" name="form_reset" action="connexion.php" method="POST">
-            <fieldset id="reset">
-                <legend>Réinitialiser votre mot de passe : </legend>
-                <div><label for="mail">Votre mail :</label> <input type="email" name="mail" id="mail" size="35" required></div>
-                <div><input type="submit" name="envoie" value="Envoyer"></div>
-            </fieldset>
-        </form>  
+            <form id="form_reset" name="form_reset" action="reset-mdp.php" method="POST">
+                <fieldset id="reset">
+                    <legend>Réinitialiser votre mot de passe : </legend>
+                    <div><label for="mail">Votre mail :</label> <input type="email" name="mail" id="mail" size="35" required></div>
+                    <div><input type="submit" name="envoie" value="Envoyer"></div
+                    <?php
+                    session_start();
+
+                    /*                     * ******Actualisation de la session...********* */
+                    include('../includes/fonctions.php');
+                    connexionbdd();
+                    actualiser_session();
+
+                    $email = filter_input(INPUT_POST, 'mail');
+                    if (isset($email)) {
+                        $recup = "select pseudo from membres where mail=" . $email;
+                        $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'root', '');
+                        // Requête SQL
+                        $req = $recup;
+                        $res = $cnx->prepare($req);
+                        $pseudo = $res->execute();
+                        if (mdp_mail($email, $pseudo)) {
+                            echo' Un mail vient de vous être envoyé';
+                        } else {
+                            echo' Un mail devait vous être envoyé, mais une erreur est survenue, veuillez essayer à nouveau.';
+                        }
+                    }
+                    ?>
+                </fieldset>
+            </form>
         </section>
         <?php
         include('../includes/footer.inc.php');
