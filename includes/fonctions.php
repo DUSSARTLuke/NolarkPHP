@@ -257,3 +257,33 @@ function inscription_mail($mail, $pseudo, $passe) {
         return true;
     return false;
 }
+
+function mdp_mail($mail, $pseudo) {
+    $to = $mail;
+    $subject = 'Réinitialisation de votre mot de passe - ' . $pseudo;
+    $message = '<html>
+					<head>
+						<title></title>
+					</head>
+					
+					<body>
+						<div>Bonjour '.$pseudo.' !<br/>
+						Vous avez oublié votre mot de passe ? Pas de soucis, voilà le lien pour le réinitialiser<br/>
+						<a href="localhost/nolark/pages/reini-mdp.php?login='.$pseudo.'"></a><br/>
+						En vous remerciant.<br/><br/>
+						Moi - Wembaster de Nolark 
+					</body>
+				</html>';
+//headers principaux.
+    $headers = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+//headers supplémentaires
+    $headers .= 'From: "Nolark" <contact@supersite.com>' . "\r\n";
+    $headers .= 'Cc: "Duplicata" <duplicata@supersite.com>' . "\r\n";
+    $headers .= 'Reply-To: "Membres" <membres@supersite.com>' . "\r\n";
+    $email = mail($to, $subject, $message, $headers); //marche
+
+    if ($email)
+        return true;
+    return false;
+}
