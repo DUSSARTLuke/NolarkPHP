@@ -24,13 +24,13 @@
   L'id de cookie est incorrect
   --------------------------
  */
-function sqlquery($requete){
+
+function sqlquery($requete) {
     $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'root', '');
     // Requête SQL
     $req = $requete;
     $res = $cnx->prepare($req);
     $res->execute();
-
 }
 
 function connexionbdd() {
@@ -123,7 +123,6 @@ function vider_cookie() {
     }
 }
 
-
 function checkpseudo($pseudo) {
     if ($pseudo == '')
         return 'empty';
@@ -134,7 +133,7 @@ function checkpseudo($pseudo) {
 
     else {
         $result = sqlquery("SELECT COUNT(*) AS nbr FROM membres WHERE login = '" . $pseudo . "'");
-        
+
 
         if ($result['nbr'] > 0)
             return 'exists';
@@ -175,7 +174,7 @@ function checkmail($mail) {
         return 'isnt';
 
     else {
-        $result = sqlquery("SELECT COUNT(*) AS nbr FROM membres WHERE mail = '" . $mail . "'");        
+        $result = sqlquery("SELECT COUNT(*) AS nbr FROM membres WHERE mail = '" . $mail . "'");
 
         if ($result['nbr'] > 0)
             return 'exists';
@@ -220,12 +219,41 @@ function birthdate($date) {
     }
 }
 
-
-function vidersession()
-{
-	foreach($_SESSION as $cle => $element)
-	{
-		unset($_SESSION[$cle]);
-	}
+function vidersession() {
+    foreach ($_SESSION as $cle => $element) {
+        unset($_SESSION[$cle]);
+    }
 }
 
+function inscription_mail($mail, $pseudo, $passe) {
+    $to = $mail;
+    $subject = 'Inscription sur Nolark - ' . $pseudo;
+    $message = '<html>
+					<head>
+						<title></title>
+					</head>
+					
+					<body>
+						<div>Bienvenue sur Nolark !<br/>
+						Vous avez complété une inscription avec le pseudo
+						' . htmlspecialchars($pseudo, ENT_QUOTES) . ' à l\'instant.<br/>
+						Votre mot de passe est : ' . htmlspecialchars($passe, ENT_QUOTES) . '.<br/>
+						Veillez à le garder secret et à ne pas l\'oublier.<br/><br/>
+						
+						En vous remerciant.<br/><br/>
+						Moi - Wembaster de Nolark 
+					</body>
+				</html>';
+//headers principaux.
+    $headers = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+//headers supplémentaires
+    $headers .= 'From: "Nolark" <contact@supersite.com>' . "\r\n";
+    $headers .= 'Cc: "Duplicata" <duplicata@supersite.com>' . "\r\n";
+    $headers .= 'Reply-To: "Membres" <membres@supersite.com>' . "\r\n";
+    $email = mail($to, $subject, $message, $headers); //marche
+
+    if ($email)
+        return true;
+    return false;
+}
