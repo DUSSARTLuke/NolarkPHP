@@ -269,7 +269,7 @@ function mdp_mail($mail, $pseudo) {
 					<body>
 						<div>Bonjour '.$pseudo.' !<br/>
 						Vous avez oublié votre mot de passe ? Pas de soucis, voilà le lien pour le réinitialiser<br/>
-						<a href="localhost/nolark/pages/reini-mdp.php?login='.$pseudo.'"></a><br/>
+						localhost/nolark/pages/reini-mdp.php?login='.$pseudo.'<br/>
 						En vous remerciant.<br/><br/>
 						Moi - Wembaster de Nolark 
 					</body>

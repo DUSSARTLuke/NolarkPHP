@@ -36,12 +36,15 @@
 
                     $email = filter_input(INPUT_POST, 'mail');
                     if (isset($email)) {
-                        $recup = "select pseudo from membres where mail=" . $email;
+                        $recup = 'select `login` from `membres` where `mail`="' . $email .'"';
                         $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'root', '');
                         // Requête SQL
                         $req = $recup;
                         $res = $cnx->prepare($req);
-                        $pseudo = $res->execute();
+                        $res->execute();
+                        $res->fetch();
+                        $pseudo = $res['login'];
+                        var_dump($pseudo);
                         if (mdp_mail($email, $pseudo)) {
                             echo' Un mail vient de vous être envoyé';
                         } else {
