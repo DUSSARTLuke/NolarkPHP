@@ -42,10 +42,10 @@
                         $req = $recup;
                         $res = $cnx->prepare($req);
                         $res->execute();
-                        $res->fetch();
-                        $pseudo = $res['login'];
-                        var_dump($pseudo);
-                        if (mdp_mail($email, $pseudo)) {
+                        $pseudo = $res->fetch();
+                        
+                        $log = $pseudo['login'];
+                        if (mdp_mail($email, $log)) {
                             echo' Un mail vient de vous être envoyé';
                         } else {
                             echo' Un mail devait vous être envoyé, mais une erreur est survenue, veuillez essayer à nouveau.';

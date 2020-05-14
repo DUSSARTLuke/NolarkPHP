@@ -18,17 +18,31 @@ if (!isset($_SESSION['login'])) {
         <meta name="author" content="Luke DUSSART">
         <meta name="description" content="Découvrez des casques moto dépassant même les exigences des tests de sécurité. Tous les casques Nolark au meilleur prix et avec en prime la livraison gratuite !">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../css/styles.css" rel="stylesheet" type="text/css">
-        <link href="../css/connexion.css" rel="stylesheet" type="text/css">
+
+        <link href="../css/membres.css" rel="stylesheet" type="text/css">
         <link rel="icon" href="../favicon.ico">
     </head>
     <body>
         <?php
         include('../includes/header.html.inc.php');
         ?>
+        <div id="principal">
+            <nav class="nav_client">
+                <ul class="ul_client">
+                    <li class="li_client">
+                        <a href="/membres/informations">Mon Profil</a>
+                    </li>
+                    <li class="li_client">
+                        <a href="/membres/commandes">Mes commandes</a>
+                    </li>
+                    <li class="li_client">
+                        <a href="deconnexion.php">Déconnexion</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <h1>Bienvenue <?php echo htmlentities(trim($_SESSION['login'])); ?> !</h1>
 
-        Bienvenue <?php echo htmlentities(trim($_SESSION['login'])); ?> !<br />
-        <a href="deconnexion.php">Déconnexion</a>
         <?php
         include('../includes/footer.inc.php');
         ?>

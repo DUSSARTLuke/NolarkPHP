@@ -18,7 +18,7 @@ $pages = array(
     'Piste' => $dirPages . 'piste.php',
     'Enfants' => $dirPages . 'enfants.php',
     'Nous contacter' => $dirPages . 'nous-contacter.php',
-    'Client' =>$dirPages . 'connexion.php'
+    'Client' =>$dirPages . 'membres.php'
 );
 ?>
 
