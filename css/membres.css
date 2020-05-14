@@ -58,15 +58,9 @@ nav ul li:hover {
     background-color:#9a330a; /* Couleur du fond au passage de la souris */
 }
 
-#principal {
-    display: flex; /* Ce conteneur est "flexible" */
-    flex-direction: column; /* Les éléments sont empilés */
-    margin-left: 16px; /* Marge de gauche */
-    width: 238px; /* Largeur du conteneur (taille de l'image de fond) */
-    font-size: small; /* Le texte est réduit en S */
-    font-weight: bold; /* Le texte est mis en gras */
-    padding-left: 35px; /* Marge intérieure gauche */
-    padding-bottom: 60px; /* Marge intérieure basse */
+#menu {
+    height: 400px;
+    float: left;
 }
 .ul_client{
     display: flex; /* Ce conteneur est "flexible" */
@@ -96,6 +90,9 @@ h1 {
     font-size: xx-large; /* Le texte est grossi en XXL */
 }
 
+#principal{
+    float:left;
+}
 footer {
     display: flex; /* Ce conteneur est "flexible" */
     justify-content: center; /* Les éléments portés sont centrés à l'horizontal */

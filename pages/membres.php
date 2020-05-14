@@ -26,7 +26,7 @@ if (!isset($_SESSION['login'])) {
         <?php
         include('../includes/header.html.inc.php');
         ?>
-        <div id="principal">
+        <div id="menu">
             <nav class="nav_client">
                 <ul class="ul_client">
                     <li class="li_client">
@@ -41,8 +41,9 @@ if (!isset($_SESSION['login'])) {
                 </ul>
             </nav>
         </div>
+        <div id="principal">
         <h1>Bienvenue <?php echo htmlentities(trim($_SESSION['login'])); ?> !</h1>
-
+        </div>
         <?php
         include('../includes/footer.inc.php');
         ?>
