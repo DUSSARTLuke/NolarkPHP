@@ -47,7 +47,7 @@ if (isset($pseu)) {
         $_SESSION['erreurs'] ++;
     }
 } else {
-    header('Location: ../membres.php');
+    header('Location: membres.php');
     exit();
 }
 
@@ -80,7 +80,7 @@ if (isset($password)) {
         $_SESSION['erreurs'] ++;
     }
 } else {
-    header('Location: ../membres.php');
+    header('Location: membres.php');
     exit();
 }
 
@@ -153,7 +153,7 @@ if (isset($mail_confirm)) {
         }
     }
 } else {
-    header('Location: ../membres.php');
+    header('Location: membres.php');
     exit();
 }
 
