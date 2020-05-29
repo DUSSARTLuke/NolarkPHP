@@ -118,7 +118,7 @@ while($k<=$nb_triangles)
 $aupifcolor = $Lcolors[mt_rand(0,$TLcolors-1)]; //la couleur des caractères
 $ecart = 300/10+4; //écart entre les caractères
 
-$_SESSION['captcha'] = ''; //La voilà !! Enfin !!
+$_SESSION['captcha'] = '';
 
 $l = 0;
 while($l <= 7)
@@ -135,4 +135,3 @@ while($l <= 7)
 }
 
 imagepng($image); //On envoie et on prie :p
-?>
