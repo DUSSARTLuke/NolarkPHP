@@ -32,7 +32,7 @@ $queries = 0;
                 <p>Il est possible que certaines fois, l'image soit trop dure à lire ; le cas échéant, actualisez la page jusqu'à avoir une image lisible.</p>
                 <p>Si vous êtes dans l'incapacité de lire plusieurs images d'affilée, <a href="nous-contacter.php">contactez-nous</a>, nous nous occuperons de votre inscription.</p>
                 <label for="captcha">Entrez les 8 caractères (majuscules ou chiffres) contenus dans l'image :</label> <input type="text" name="captcha" id="captcha"><br/>
-                <img src="../pages/captcha.php" alt="image avec des caractères permettant de vérifier la non-automatisation" />
+                <img src="captcha.php" alt="image avec des caractères permettant de vérifier la non-automatisation" />
             </fieldset> -->
         </form>
     </section>

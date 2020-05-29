@@ -220,10 +220,11 @@ if ($_SESSION['erreurs'] == 0) {
     $res = $cnx->prepare($req);
 
     if ($res->execute()) {
-        if (inscription_mail($email, $pseudo, $mdp))
+        if (inscription_mail($email, $pseudo, $mdp)) {
             $sent = 'Un mail de confirmation vous a été envoyé.';
-        else
+        } else {
             $sent = 'Un mail de confirmation devait être envoyé, mais son envoi a échoué, vous êtes cependant bien inscrit.';
+        }
         vidersession();
         $_SESSION['inscrit'] = $pseudo;
         /* informe qu'il s'est déjà inscrit s'il actualise, si son navigateur
@@ -269,6 +270,7 @@ if ($_SESSION['erreurs'] == 0) {
         <?php
     }
 }
+unset($cnx);
 ?>
 </div>
 

@@ -42,7 +42,7 @@
                         $req = $recup;
                         $res = $cnx->prepare($req);
                         $res->execute();
-                        $pseudo = $res->fetch();
+                        $pseudo = $res->fetch(PDO::FETCH_ASSOC);
                         
                         $log = $pseudo['login'];
                         if (mdp_mail($email, $log)) {
