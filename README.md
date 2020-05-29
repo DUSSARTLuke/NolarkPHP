@@ -1,2 +1,3 @@
 # NolarkPHP
-Nous n'avons pas été sur github pour faire tout le code... nous ne connaissions pas encore assez ce système, c'est pourquoi il n'y a que le code final.
+Je n'ai utilisé  github qu'aujourd'uui car je n'étais pas à l'aise avec pendant l'édition de mon code. 
+Maintenant cela va mieux et j'ai donc pu faire les dernières modifications avec.
