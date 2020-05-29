@@ -1,7 +1,6 @@
 <?php
 
 /*
-  Neoterranos & LkY
   Page fonctions.php
 
   Contient quelques fonctions globales.

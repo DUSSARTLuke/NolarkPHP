@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Nolark</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Nolark</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Composer.html">\Composer</a></li>
+                                                        <li><a href="../namespaces/Symfony.html">\Symfony</a></li>
+                                                        <li><a href="../namespaces/Twig.html">\Twig</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">1944</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-684703488"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-684703488" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1578685013"></a>
+                                <a href="../namespaces/Composer.html" style="margin-left: 30px; padding-left: 0">Composer</a>
+            </div>
+            <div id="namespace-1578685013" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1842652455"></a>
+                                <a href="../namespaces/Composer.Autoload.html" style="margin-left: 30px; padding-left: 0">Autoload</a>
+            </div>
+            <div id="namespace-1842652455" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Composer.Autoload.ClassLoader.html">ClassLoader</a></li>
+                                                    <li class="class"><a href="../classes/Composer.Autoload.ComposerStaticInitc73a02011062dae7dc3f8201c78c00ff.html">ComposerStaticInitc73a02011062dae7dc3f8201c78c00ff</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1309116887"></a>
+                                <a href="../namespaces/Symfony.html" style="margin-left: 30px; padding-left: 0">Symfony</a>
+            </div>
+            <div id="namespace-1309116887" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2116159868"></a>
+                                <a href="../namespaces/Symfony.Polyfill.html" style="margin-left: 30px; padding-left: 0">Polyfill</a>
+            </div>
+            <div id="namespace-2116159868" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-994184406"></a>
+                                <a href="../namespaces/Symfony.Polyfill.Ctype.html" style="margin-left: 30px; padding-left: 0">Ctype</a>
+            </div>
+            <div id="namespace-994184406" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Symfony.Polyfill.Ctype.Ctype.html">Ctype</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-396799951"></a>
+                                <a href="../namespaces/Symfony.Polyfill.Mbstring.html" style="margin-left: 30px; padding-left: 0">Mbstring</a>
+            </div>
+            <div id="namespace-396799951" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Symfony.Polyfill.Mbstring.Mbstring.html">Mbstring</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-962816157"></a>
+                                <a href="../namespaces/Twig.html" style="margin-left: 30px; padding-left: 0">Twig</a>
+            </div>
+            <div id="namespace-962816157" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-338044617"></a>
+                                <a href="../namespaces/Twig.Cache.html" style="margin-left: 30px; padding-left: 0">Cache</a>
+            </div>
+            <div id="namespace-338044617" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Twig.Cache.CacheInterface.html">CacheInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Twig.Cache.FilesystemCache.html">FilesystemCache</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Cache.NullCache.html">NullCache</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1602932371"></a>
+                                <a href="../namespaces/Twig.Error.html" style="margin-left: 30px; padding-left: 0">Error</a>
+            </div>
+            <div id="namespace-1602932371" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Error.LoaderError.html">LoaderError</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Error.RuntimeError.html">RuntimeError</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Error.SyntaxError.html">SyntaxError</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-986784364"></a>
+                                <a href="../namespaces/Twig.Extension.html" style="margin-left: 30px; padding-left: 0">Extension</a>
+            </div>
+            <div id="namespace-986784364" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Twig.Extension.ExtensionInterface.html">ExtensionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Twig.Extension.GlobalsInterface.html">GlobalsInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Twig.Extension.RuntimeExtensionInterface.html">RuntimeExtensionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Twig.Extension.AbstractExtension.html">AbstractExtension</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Extension.CoreExtension.html">CoreExtension</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Extension.DebugExtension.html">DebugExtension</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Extension.EscaperExtension.html">EscaperExtension</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Extension.OptimizerExtension.html">OptimizerExtension</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Extension.ProfilerExtension.html">ProfilerExtension</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Extension.SandboxExtension.html">SandboxExtension</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Extension.StagingExtension.html">StagingExtension</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Extension.StringLoaderExtension.html">StringLoaderExtension</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-257182688"></a>
+                                <a href="../namespaces/Twig.Loader.html" style="margin-left: 30px; padding-left: 0">Loader</a>
+            </div>
+            <div id="namespace-257182688" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Twig.Loader.LoaderInterface.html">LoaderInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Twig.Loader.ArrayLoader.html">ArrayLoader</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Loader.ChainLoader.html">ChainLoader</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Loader.FilesystemLoader.html">FilesystemLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1168592379"></a>
+                                <a href="../namespaces/Twig.Node.html" style="margin-left: 30px; padding-left: 0">Node</a>
+            </div>
+            <div id="namespace-1168592379" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-278559956"></a>
+                                <a href="../namespaces/Twig.Node.Expression.html" style="margin-left: 30px; padding-left: 0">Expression</a>
+            </div>
+            <div id="namespace-278559956" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1412836783"></a>
+                                <a href="../namespaces/Twig.Node.Expression.Binary.html" style="margin-left: 30px; padding-left: 0">Binary</a>
+            </div>
+            <div id="namespace-1412836783" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.AbstractBinary.html">AbstractBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.AddBinary.html">AddBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.AndBinary.html">AndBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.BitwiseAndBinary.html">BitwiseAndBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.BitwiseOrBinary.html">BitwiseOrBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.BitwiseXorBinary.html">BitwiseXorBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.ConcatBinary.html">ConcatBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.DivBinary.html">DivBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.EndsWithBinary.html">EndsWithBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.EqualBinary.html">EqualBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.FloorDivBinary.html">FloorDivBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.GreaterBinary.html">GreaterBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.GreaterEqualBinary.html">GreaterEqualBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.InBinary.html">InBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.LessBinary.html">LessBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.LessEqualBinary.html">LessEqualBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.MatchesBinary.html">MatchesBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.ModBinary.html">ModBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.MulBinary.html">MulBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.NotEqualBinary.html">NotEqualBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.NotInBinary.html">NotInBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.OrBinary.html">OrBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.PowerBinary.html">PowerBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.RangeBinary.html">RangeBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.SpaceshipBinary.html">SpaceshipBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.StartsWithBinary.html">StartsWithBinary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Binary.SubBinary.html">SubBinary</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-126221506"></a>
+                                <a href="../namespaces/Twig.Node.Expression.Filter.html" style="margin-left: 30px; padding-left: 0">Filter</a>
+            </div>
+            <div id="namespace-126221506" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Filter.DefaultFilter.html">DefaultFilter</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-565996485"></a>
+                                <a href="../namespaces/Twig.Node.Expression.Test.html" style="margin-left: 30px; padding-left: 0">Test</a>
+            </div>
+            <div id="namespace-565996485" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Test.ConstantTest.html">ConstantTest</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Test.DefinedTest.html">DefinedTest</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Test.DivisiblebyTest.html">DivisiblebyTest</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Test.EvenTest.html">EvenTest</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Test.NullTest.html">NullTest</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Test.OddTest.html">OddTest</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Test.SameasTest.html">SameasTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1519041969"></a>
+                                <a href="../namespaces/Twig.Node.Expression.Unary.html" style="margin-left: 30px; padding-left: 0">Unary</a>
+            </div>
+            <div id="namespace-1519041969" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Unary.AbstractUnary.html">AbstractUnary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Unary.NegUnary.html">NegUnary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Unary.NotUnary.html">NotUnary</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.Unary.PosUnary.html">PosUnary</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Node.Expression.AbstractExpression.html">AbstractExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.ArrayExpression.html">ArrayExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.ArrowFunctionExpression.html">ArrowFunctionExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.AssignNameExpression.html">AssignNameExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.BlockReferenceExpression.html">BlockReferenceExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.CallExpression.html">CallExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.ConditionalExpression.html">ConditionalExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.ConstantExpression.html">ConstantExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.FilterExpression.html">FilterExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.FunctionExpression.html">FunctionExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.GetAttrExpression.html">GetAttrExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.InlinePrint.html">InlinePrint</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.MethodCallExpression.html">MethodCallExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.NameExpression.html">NameExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.NullCoalesceExpression.html">NullCoalesceExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.ParentExpression.html">ParentExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.TempNameExpression.html">TempNameExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.TestExpression.html">TestExpression</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.Expression.VariadicExpression.html">VariadicExpression</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Twig.Node.NodeCaptureInterface.html">NodeCaptureInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Twig.Node.NodeOutputInterface.html">NodeOutputInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Twig.Node.AutoEscapeNode.html">AutoEscapeNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.BlockNode.html">BlockNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.BlockReferenceNode.html">BlockReferenceNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.BodyNode.html">BodyNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.CheckSecurityNode.html">CheckSecurityNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.CheckToStringNode.html">CheckToStringNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.DeprecatedNode.html">DeprecatedNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.DoNode.html">DoNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.EmbedNode.html">EmbedNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.FlushNode.html">FlushNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.ForLoopNode.html">ForLoopNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.ForNode.html">ForNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.IfNode.html">IfNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.ImportNode.html">ImportNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.IncludeNode.html">IncludeNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.MacroNode.html">MacroNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.ModuleNode.html">ModuleNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.PrintNode.html">PrintNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.SandboxNode.html">SandboxNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.SetNode.html">SetNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.TextNode.html">TextNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Node.WithNode.html">WithNode</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-921122554"></a>
+                                <a href="../namespaces/Twig.NodeVisitor.html" style="margin-left: 30px; padding-left: 0">NodeVisitor</a>
+            </div>
+            <div id="namespace-921122554" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.NodeVisitor.MacroAutoImportNodeVisitor.html">MacroAutoImportNodeVisitor</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-80523989"></a>
+                                <a href="../namespaces/Twig.Profiler.html" style="margin-left: 30px; padding-left: 0">Profiler</a>
+            </div>
+            <div id="namespace-80523989" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2072533444"></a>
+                                <a href="../namespaces/Twig.Profiler.Dumper.html" style="margin-left: 30px; padding-left: 0">Dumper</a>
+            </div>
+            <div id="namespace-2072533444" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Profiler.Dumper.BaseDumper.html">BaseDumper</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Profiler.Dumper.BlackfireDumper.html">BlackfireDumper</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Profiler.Dumper.HtmlDumper.html">HtmlDumper</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Profiler.Dumper.TextDumper.html">TextDumper</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1134428414"></a>
+                                <a href="../namespaces/Twig.Profiler.Node.html" style="margin-left: 30px; padding-left: 0">Node</a>
+            </div>
+            <div id="namespace-1134428414" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Profiler.Node.EnterProfileNode.html">EnterProfileNode</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Profiler.Node.LeaveProfileNode.html">LeaveProfileNode</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Profiler.Profile.html">Profile</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1355242203"></a>
+                                <a href="../namespaces/Twig.RuntimeLoader.html" style="margin-left: 30px; padding-left: 0">RuntimeLoader</a>
+            </div>
+            <div id="namespace-1355242203" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Twig.RuntimeLoader.RuntimeLoaderInterface.html">RuntimeLoaderInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Twig.RuntimeLoader.ContainerRuntimeLoader.html">ContainerRuntimeLoader</a></li>
+                                                    <li class="class"><a href="../classes/Twig.RuntimeLoader.FactoryRuntimeLoader.html">FactoryRuntimeLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-927484624"></a>
+                                <a href="../namespaces/Twig.Sandbox.html" style="margin-left: 30px; padding-left: 0">Sandbox</a>
+            </div>
+            <div id="namespace-927484624" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Twig.Sandbox.SecurityPolicyInterface.html">SecurityPolicyInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Twig.Sandbox.SecurityError.html">SecurityError</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Sandbox.SecurityNotAllowedFilterError.html">SecurityNotAllowedFilterError</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Sandbox.SecurityNotAllowedFunctionError.html">SecurityNotAllowedFunctionError</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Sandbox.SecurityNotAllowedMethodError.html">SecurityNotAllowedMethodError</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Sandbox.SecurityNotAllowedPropertyError.html">SecurityNotAllowedPropertyError</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Sandbox.SecurityNotAllowedTagError.html">SecurityNotAllowedTagError</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Sandbox.SecurityPolicy.html">SecurityPolicy</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1121359498"></a>
+                                <a href="../namespaces/Twig.Test.html" style="margin-left: 30px; padding-left: 0">Test</a>
+            </div>
+            <div id="namespace-1121359498" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Test.IntegrationTestCase.html">IntegrationTestCase</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Test.NodeTestCase.html">NodeTestCase</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-189055928"></a>
+                                <a href="../namespaces/Twig.TokenParser.html" style="margin-left: 30px; padding-left: 0">TokenParser</a>
+            </div>
+            <div id="namespace-189055928" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Twig.TokenParser.TokenParserInterface.html">TokenParserInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Twig.TokenParser.AbstractTokenParser.html">AbstractTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.ApplyTokenParser.html">ApplyTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.AutoEscapeTokenParser.html">AutoEscapeTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.BlockTokenParser.html">BlockTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.DeprecatedTokenParser.html">DeprecatedTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.DoTokenParser.html">DoTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.EmbedTokenParser.html">EmbedTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.ExtendsTokenParser.html">ExtendsTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.FlushTokenParser.html">FlushTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.ForTokenParser.html">ForTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.FromTokenParser.html">FromTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.IfTokenParser.html">IfTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.ImportTokenParser.html">ImportTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.IncludeTokenParser.html">IncludeTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.MacroTokenParser.html">MacroTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.SandboxTokenParser.html">SandboxTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.SetTokenParser.html">SetTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.UseTokenParser.html">UseTokenParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenParser.WithTokenParser.html">WithTokenParser</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1811465358"></a>
+                                <a href="../namespaces/Twig.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
+            </div>
+            <div id="namespace-1811465358" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Util.DeprecationCollector.html">DeprecationCollector</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Util.TemplateDirIterator.html">TemplateDirIterator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Twig.Compiler.html">Compiler</a></li>
+                                                    <li class="class"><a href="../classes/Twig.ExpressionParser.html">ExpressionParser</a></li>
+                                                    <li class="class"><a href="../classes/Twig.FileExtensionEscapingStrategy.html">FileExtensionEscapingStrategy</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Lexer.html">Lexer</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Markup.html">Markup</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Source.html">Source</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TemplateWrapper.html">TemplateWrapper</a></li>
+                                                    <li class="class"><a href="../classes/Twig.Token.html">Token</a></li>
+                                                    <li class="class"><a href="../classes/Twig.TokenStream.html">TokenStream</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/__TwigTemplate_11f880fa20769dadf41dfdc744b31c8668a02a786d7a40d16e1b0ba322e5d438.html">__TwigTemplate_11f880fa20769dadf41dfdc744b31c8668a02a786d7a40d16e1b0ba322e5d438</a></li>
+                                                    <li class="class"><a href="../classes/__TwigTemplate_30510cb1d621e057a32d7b97270970bc09593349ebb1bb8706e5a9daf887b1b8.html">__TwigTemplate_30510cb1d621e057a32d7b97270970bc09593349ebb1bb8706e5a9daf887b1b8</a></li>
+                                                    <li class="class"><a href="../classes/__TwigTemplate_8c654a21d1402cb2cf2f81f950423f37ac5ad98fac479644276252bb100cf4a1.html">__TwigTemplate_8c654a21d1402cb2cf2f81f950423f37ac5ad98fac479644276252bb100cf4a1</a></li>
+                                                    <li class="class"><a href="../classes/__TwigTemplate_f9b0ee7f37639c08df4c81c3f5097dcfc16544c00c830bc6af356c128ce92314.html">__TwigTemplate_f9b0ee7f37639c08df4c81c3f5097dcfc16544c00c830bc6af356c128ce92314</a></li>
+                                                    <li class="class"><a href="../classes/ComposerAutoloaderInitc73a02011062dae7dc3f8201c78c00ff.html">ComposerAutoloaderInitc73a02011062dae7dc3f8201c78c00ff</a></li>
+                                                    <li class="class"><a href="../classes/panier.html">panier</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content file">
+                    <nav>
+                                                                    </nav>
+
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small></small>SetTokenParser.php</h1>
+                    <p><em></em></p>
+                    
+
+                    
+                    
+                                        <h2>Classes</h2>
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/Twig.TokenParser.SetTokenParser.html">SetTokenParser</a></td>
+                            <td><em>Defines a variable.</em></td>
+                        </tr>
+                                        </table>
+                                    </div>
+
+                <aside class="span4 detailsbar">
+                    <dl>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        
+                        
+                    </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                            </table>
+
+                </aside>
+            </div>
+
+            
+            
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/vendor\twig\twig\src\TokenParser\SetTokenParser.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Composer.html">\Composer</a></li>
+                                                                            <li><a href="../namespaces/Symfony.html">\Symfony</a></li>
+                                                                            <li><a href="../namespaces/Twig.html">\Twig</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 29th, 2020 at 08:20.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
