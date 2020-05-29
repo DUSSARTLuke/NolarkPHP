@@ -34,9 +34,9 @@
                     connexionbdd();
                     actualiser_session();
 
-                    $email = filter_input(INPUT_POST, 'mail');
+                    $email = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_EMAIL); // utlisation de filter_input pour ne pas utiliser la variable superglobale 
                     if (isset($email)) {
-                        $recup = 'select `login` from `membres` where `mail`="' . $email .'"';
+                        $recup = 'select `login` from `membres` where `mail`="' . $email .'"'; // récupération du login grâce au mail rentré
                         $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'root', '');
                         // Requête SQL
                         $req = $recup;

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <!-- 
-     Page web créé dans le cadre du cours de web Dev le 03/04/2020
+     Page web créé dans le cadre du cours de PPE PHP le 03/04/2020
      Auteur : Luke DUSSART
      Email : lukedussart@hotmail.fr
 -->
 <?php
 session_start();
+/**
+ * Si l'utilisateur n'est pas connecté, alors on le redirige vers la page connexion
+ */
 if (!isset($_SESSION['login'])) {
     header('Location: connexion.php');
     exit();

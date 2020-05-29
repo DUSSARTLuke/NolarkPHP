@@ -25,6 +25,10 @@
   --------------------------
  */
 
+/**
+ * Méthode qui permet de faire une requête sur la base de données
+ * @param string $requete la requete que l'on veut executer
+ */
 function sqlquery($requete) {
     $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'root', '');
     // Requête SQL
@@ -32,12 +36,18 @@ function sqlquery($requete) {
     $res = $cnx->prepare($req);
     $res->execute();
 }
-
+/**
+ * Méthode permettant d'établir une connexion à la base de données
+ */
 function connexionbdd() {
     //Connexion à la base de données
     $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'nolarkuser', 'nolarkpwd');
 }
 
+/**
+ * Méthode permettant d'effectuer l'actualisation de la session sur les pages
+ * en fonction de la variable $_SESSION ou $_COOKIE
+ */
 function actualiser_session() {
     if (isset($_SESSION['membre_id']) && intval($_SESSION['membre_id']) != 0) { //Vérification id
         //utilisation de la fonction sqlquery, on sait qu'on aura qu'un résultat car l'id d'un membre est unique.
@@ -117,12 +127,20 @@ function actualiser_session() {
     }
 }
 
+/**
+ * Méthode permettant de vider les cookies
+ */
 function vider_cookie() {
     foreach ($_COOKIE as $cle => $element) {
         setcookie($cle, '', time() - 3600);
     }
 }
 
+/**
+ * Fonction permettant de retourner si le pseudo est bon ou l'erreur
+ * @param string $pseudo
+ * @return string réponse en fonction des règles mises en place
+ */
 function checkpseudo($pseudo) {
     if ($pseudo == '')
         return 'empty';
@@ -142,6 +160,11 @@ function checkpseudo($pseudo) {
     }
 }
 
+/**
+ * Fonction permettant de retourner si le mot de passe est bon ou l'erreur
+ * @param string $mdp
+ * @return string réponse en fonction des règles mises en place
+ */
 function checkmdp($mdp) {
     if ($mdp == '')
         return 'empty';
@@ -158,6 +181,13 @@ function checkmdp($mdp) {
     }
 }
 
+/**
+ * Fonction permettant de retourner si le mot de passe de confirmation
+ * est le même ou l'erreur
+ * @param string $mdp
+ * @param string $mdp_verif
+ * @return string réponse en fonction des règles mises en place
+ */
 function checkmdpS($mdp, $mdp_verif) {
     if ($mdp != $mdp_verif && $mdp != '' && $mdp_verif != '')
         return 'different';
@@ -165,6 +195,11 @@ function checkmdpS($mdp, $mdp_verif) {
         return checkmdp($mdp);
 }
 
+/**
+ * Fonction permettant de retourner si le mail est correct ou l'erreur
+ * @param type $mail
+ * @return string réponse en fonction des règles mises en place
+ */
 function checkmail($mail) {
     if ($mail == '')
         return 'empty';
@@ -181,6 +216,13 @@ function checkmail($mail) {
     }
 }
 
+/**
+ * Fonction permettant de retourner si le mail de confirmation
+ * est le même ou l'erreur
+ * @param string $mail
+ * @param string $mail_verif
+ * @return string réponse en fonction des règles mises en place
+ */
 function checkmailS($mail, $mail_verif) {
     if ($mail != $mail_verif && $mail != '' && $mail_verif != '')
         return 'different';
@@ -188,6 +230,11 @@ function checkmailS($mail, $mail_verif) {
         return 'ok';
 }
 
+/**
+ * Fonction permettant de retourner si la date de naissance est correcte
+ * @param string $date
+ * @return string réponse en fonction des règles mises en place
+ */
 function birthdate($date) {
     if ($date == '')
         return 'empty';
@@ -217,12 +264,23 @@ function birthdate($date) {
     }
 }
 
+/**
+ * Méthode permettant de vider une session après le passage dans la page
+ */
 function vidersession() {
     foreach ($_SESSION as $cle => $element) {
         unset($_SESSION[$cle]);
     }
 }
 
+/**
+ * Fonction envoyant un mail(utilisation de la fonction mail()) personnalisé
+ * pour l'inscription au site
+ * @param string $mail
+ * @param string $pseudo
+ * @param string $passe
+ * @return boolean renvoie si le mail a été envoyé ou non
+ */
 function inscription_mail($mail, $pseudo, $passe) {
     $to = $mail;
     $subject = 'Inscription sur Nolark - ' . $pseudo;
@@ -256,6 +314,13 @@ function inscription_mail($mail, $pseudo, $passe) {
     return false;
 }
 
+/**
+ * Fonction envoyant un mail(utilisation de la fonction mail()) personnalisé
+ * pour la confirmation de réinitialisation de mot de passe
+ * @param string $mail
+ * @param string $pseudo
+ * @return boolean renvoie si le mail a été envoyé ou non
+ */
 function reinimdp_mail($mail, $pseudo) {
     $to = $mail;
     $subject = 'Réinitialisation de votre mot de passe - ' . $pseudo;
@@ -286,6 +351,13 @@ function reinimdp_mail($mail, $pseudo) {
     return false;
 }
 
+/**
+ * Fonction envoyant un mail(utilisation de la fonction mail()) personnalisé
+ * pour la réintialisation de mot de passe (envoi d'un lien)
+ * @param string $mail
+ * @param string $pseudo
+ * @return boolean renvoie si le mail a été envoyé ou non
+ */
 function mdp_mail($mail, $pseudo) {
     $to = $mail;
     $subject = 'Réinitialisation de votre mot de passe - ' . $pseudo;

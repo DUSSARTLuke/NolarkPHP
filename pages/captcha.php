@@ -1,22 +1,10 @@
 <?php
 /*
-Neoterranos & LkY
 Page captcha.php
 
 Génère un captcha.
 
-Quelques indications : (utiliser l'outil de recherche et rechercher les mentions données)
-
-Liste des fonctions :
---------------------------
-Aucune fonction
---------------------------
-
-
-Liste des informations/erreurs :
---------------------------
-Aucune information/erreur
---------------------------
+Je n'ai pas réussi à faire apparaître l'image de captcha, je dois donc encore y travailler
 */
 
 session_start();

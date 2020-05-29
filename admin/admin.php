@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!-- 
+     Page web créé dans le cadre du cours de PPE PHP le 14/02/2020
+     Auteur : Dussart Luke
+     Email : lukedussart@hotmail.fr
+-->
 <html lang="fr-FR">
     <head>
         <title>Casques Nolark : Sécurité et confort, nos priorités !</title>

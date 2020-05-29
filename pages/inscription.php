@@ -1,6 +1,10 @@
 
 <?php session_start(); ?>
 <?php
+/**
+ * Si une session est dejà ouverte, alors on redirige l'utilisateur sur la page 
+ * membre
+ */
 if (isset($_SESSION['id'])) {
     header('Location: membres.php');
     exit();

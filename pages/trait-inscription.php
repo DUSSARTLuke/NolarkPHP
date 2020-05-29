@@ -1,6 +1,8 @@
 <?php
 session_start();
-
+/**
+ * Page permettant l'inscription, elle ne récupère que les infos et affichent si l'inscription s'est bien effectuée
+ */
 /* * ******Actualisation de la session...********* */
 include('../includes/fonctions.php');
 connexionbdd();
@@ -16,16 +18,16 @@ if (isset($_SESSION['login'])) {
 
 $_SESSION['erreurs'] = 0;
 
-$pseu = filter_input(INPUT_POST, 'pseudo');
-$password = filter_input(INPUT_POST, 'mdp');
-$pass_confirm = filter_input(INPUT_POST, 'mdp_verif');
-$email = filter_input(INPUT_POST, 'mail');
-$mail_confirm = filter_input(INPUT_POST, 'mail_verif');
-$naissance = filter_input(INPUT_POST, 'date_naissance');
+$pseu = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_STRING); // utlisation de filter_input pour ne pas utiliser la variable superglobale 
+$password = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_STRING); // utlisation de filter_input pour ne pas utiliser la variable superglobale 
+$pass_confirm = filter_input(INPUT_POST, 'mdp_verif', FILTER_SANITIZE_STRING); // utlisation de filter_input pour ne pas utiliser la variable superglobale 
+$email = filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_EMAIL); // utlisation de filter_input pour ne pas utiliser la variable superglobale 
+$mail_confirm = filter_input(INPUT_POST, 'mail_verif', FILTER_SANITIZE_EMAIL); // utlisation de filter_input pour ne pas utiliser la variable superglobale 
+$naissance = filter_input(INPUT_POST, 'date_naissance', FILTER_SANITIZE_STRING); // utlisation de filter_input pour ne pas utiliser la variable superglobale 
 //Pseudo
 if (isset($pseu)) {
     $pseudo = trim($pseu);
-    $pseudo_result = checkpseudo($pseudo);
+    $pseudo_result = checkpseudo($pseudo); // utilisation de la fonction checkpseudo dans fonctions.php
     if ($pseudo_result == 'tooshort') {
         $_SESSION['pseudo_info'] = '<span class="erreur">Le pseudo ' . htmlspecialchars($pseudo, ENT_QUOTES) . ' est trop court, vous devez en choisir un plus long (minimum 3 caractères).</span><br/>';
         $_SESSION['form_pseudo'] = '';
@@ -54,7 +56,7 @@ if (isset($pseu)) {
 //Mot de passe
 if (isset($password)) {
     $mdp = trim($password);
-    $mdp_result = checkmdp($mdp, '');
+    $mdp_result = checkmdp($mdp, ''); // utilisation de la fonction checkmdp dans fonctions.php
     if ($mdp_result == 'tooshort') {
         $_SESSION['mdp_info'] = '<span class="erreur">Le mot de passe entré est trop court, changez-en pour un plus long (minimum 4 caractères).</span><br/>';
         $_SESSION['form_mdp'] = '';
@@ -86,8 +88,8 @@ if (isset($password)) {
 
 //Mot de passe suite
 if (isset($pass_confirm)) {
-    $mdp_verif = trim($pass_confirm);
-    $mdp_verif_result = checkmdpS($mdp_verif, $mdp);
+    $mdp_verif = trim($pass_confirm); 
+    $mdp_verif_result = checkmdpS($mdp_verif, $mdp); // utilisation de la fonction checkmdpS dans fonctions.php
     if ($mdp_verif_result == 'different') {
         $_SESSION['mdp_verif_info'] = '<span class="erreur">Le mot de passe de vérification diffère du mot de passe.</span><br/>';
         $_SESSION['form_mdp_verif'] = '';
@@ -112,7 +114,7 @@ if (isset($pass_confirm)) {
 //mail
 if (isset($email)) {
     $mail = trim($email);
-    $mail_result = checkmail($mail);
+    $mail_result = checkmail($mail); // utilisation de la fonction checkmail dans fonctions.php
     if ($mail_result == 'isnt') {
         $_SESSION['mail_info'] = '<span class="erreur">Le mail ' . htmlspecialchars($mail, ENT_QUOTES) . ' n\'est pas valide.</span><br/>';
         $_SESSION['form_mail'] = '';
@@ -137,7 +139,7 @@ if (isset($email)) {
 //mail suite
 if (isset($mail_confirm)) {
     $mail_verif = trim($mail_confirm);
-    $mail_verif_result = checkmailS($mail_verif, $mail);
+    $mail_verif_result = checkmailS($mail_verif, $mail); // utilisation de la fonction checkmailS dans fonctions.php
     if ($mail_verif_result == 'different') {
         $_SESSION['mail_verif_info'] = '<span class="erreur">Le mail de vérification diffère du mail.</span><br/>';
         $_SESSION['form_mail_verif'] = '';
@@ -160,7 +162,7 @@ if (isset($mail_confirm)) {
 //date de naissance
 if (isset($naissance)) {
     $date_naissance = trim($naissance);
-    $date_naissance_result = birthdate($date_naissance);
+    $date_naissance_result = birthdate($date_naissance); // utilisation de la fonction birthdate dans fonctions.php
     if ($date_naissance_result == 'format') {
         $_SESSION['date_naissance_info'] = '<span class="erreur">Date de naissance au mauvais format ou invalide.</span><br/>';
         $_SESSION['form_date_naissance'] = '';

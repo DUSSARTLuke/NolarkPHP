@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- 
-     Page web créé dans le cadre du cours de web Dev le 03/04/2020
+     Page web créé dans le cadre du cours de PHP PPE le 03/04/2020
      Auteur : Luke DUSSART
      Email : lukedussart@hotmail.fr
 -->
@@ -10,9 +10,9 @@ connexionbdd();
 actualiser_session();
 
 /* * ******Fin actualisation de session...********* */
-$pseudo = filter_input(INPUT_POST, 'pseudo');
-$mdp = filter_input(INPUT_POST, 'mdp');
-$connexion = filter_input(INPUT_POST, 'connexion');
+$pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_STRING); // utlisation de filter_input pour ne pas utiliser la variable superglobale 
+$mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_STRING); // utlisation de filter_input pour ne pas utiliser la variable superglobale 
+$connexion = filter_input(INPUT_POST, 'connexion'); // utlisation de filter_input pour ne pas utiliser la variable superglobale 
 // on teste si le visiteur a soumis le formulaire de connexion
 if (isset($connexion) && $connexion == 'Connexion') {
     if ((isset($pseudo) && !empty($pseudo)) && (isset($mdp) && !empty($mdp))) {
