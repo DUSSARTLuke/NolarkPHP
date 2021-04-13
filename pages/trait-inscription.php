@@ -216,7 +216,7 @@ include ('../includes/header.html.inc.php');
 if ($_SESSION['erreurs'] == 0) {
 
     $insertion = "INSERT INTO `membres` (`id`, `login`, `password`, `mail`, `membre_banni`, `datenaissance`) VALUES (NULL,'" . $pseudo . "','" . password_hash($mdp, PASSWORD_BCRYPT) . "','" . $mail . "','" . 0 . "','" . $date_naissance . "')";
-    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'root', '');
+    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolarkphp', 'userLuke', 'Football64@');
     // Requête SQL
     $req = $insertion;
     $res = $cnx->prepare($req);

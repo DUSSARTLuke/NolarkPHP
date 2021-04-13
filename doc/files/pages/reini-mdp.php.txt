@@ -39,7 +39,7 @@
                     $mdp_confirm = filter_input(INPUT_POST, 'pwd_confirm', FILTER_SANITIZE_STRING); // utlisation de filter_input pour ne pas utiliser la variable superglobale 
                     $passchiffre = password_hash($pass, PASSWORD_BCRYPT); // utlisation de password_bash pour chiffré le mot de passe saisi (protection) 
                     $pseudo = filter_input(INPUT_GET, 'login');
-                    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'root', '');
+                    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolarkphp', 'userLuke', 'Football64@');
                     $recuppwd = 'select `password` from `membres` where login = "' .$pseudo.'"';
                         $sql = $recuppwd;
                         $recupmdp = $cnx->prepare($sql);

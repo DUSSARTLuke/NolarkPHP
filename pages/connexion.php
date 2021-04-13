@@ -17,7 +17,7 @@ $connexion = filter_input(INPUT_POST, 'connexion'); // utlisation de filter_inpu
 if (isset($connexion) && $connexion == 'Connexion') {
     if ((isset($pseudo) && !empty($pseudo)) && (isset($mdp) && !empty($mdp))) {
 
-        $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'nolarkuser', 'nolarkpwd');
+        $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolarkphp', 'userLuke', 'Football64@');
 
         // on teste si une entrée de la base contient ce couple login / pass
         $sql = 'SELECT count(*) FROM `membres` WHERE login= "' . $pseudo . '" AND password= "' . password_hash($mdp, PASSWORD_BCRYPT) . '"';

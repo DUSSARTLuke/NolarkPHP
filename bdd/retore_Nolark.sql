@@ -1,8 +1,5 @@
 -- -----------------------------
 -- Création de la BDD "nolark" -
--- -----------------------------
-CREATE DATABASE nolark DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE nolark;
 
 -- ----------------------------------------------------------------------------
 -- Création de l'utilisateur "nolarkuser" ayant pour mot de passe "nolarkpwd" -
@@ -17,7 +14,7 @@ GRANT USAGE ON * . * TO  'nolarkuser'@'localhost' IDENTIFIED BY 'nolarkpwd' WITH
 -- ----------------------------------------------------------------------------------------
 -- Donner tous les privilèges (hors ceux d'administration) à nolarkuser sur la BDD nolark -
 -- ----------------------------------------------------------------------------------------
-GRANT SELECT ON `nolark`.* TO 'nolarkuser'@'localhost';
+GRANT SELECT ON `nolarkphp`.* TO 'nolarkuser'@'localhost';
 
 -- -------------------------------
 -- Création de la table "marque" -

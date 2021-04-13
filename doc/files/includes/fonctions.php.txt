@@ -29,7 +29,7 @@
  * @param string $requete la requete que l'on veut executer
  */
 function sqlquery($requete) {
-    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'root', '');
+    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolarkphp', 'userLuke', 'Football64@');
     // Requête SQL
     $req = $requete;
     $res = $cnx->prepare($req);
@@ -40,7 +40,7 @@ function sqlquery($requete) {
  */
 function connexionbdd() {
     //Connexion à la base de données
-    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'nolarkuser', 'nolarkpwd');
+    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolarkphp', 'userLuke', 'Football64@');
 }
 
 /**

@@ -5,7 +5,7 @@ require_once '../vendor/autoload.php';
 
 try {
     // Requête SQL
-    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolark', 'nolarkuser', 'nolarkpwd');
+    $cnx = new PDO('mysql:host=127.0.0.1;dbname=nolarkphp', 'userLuke', 'Football64@');
     $req = 'SELECT * FROM casque INNER JOIN type ON casque.type=type.id';
     $req .= ' INNER JOIN marque ON casque.marque=marque.id';
     $req .= ' WHERE libelle="' . substr($pageActuelle, 0, -4) . '"';
